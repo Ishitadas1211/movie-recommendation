@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommendation System</title>
+</head>
+<body style="text-align:center; font-family:Arial;">
+
+<h1>🎬 Movie Recommendation System</h1>
+
+<form method="POST">
+    <select name="movie">
+        {% for movie in movies %}
+            <option value="{{ movie }}">{{ movie }}</option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+    <button type="submit">Recommend</button>
+</form>
+
+<h2>Recommended Movies:</h2>
+
+{% for movie in recommendations %}
+    <p>{{ movie }}</p>
+{% endfor %}
+
+</body>
+</html>
