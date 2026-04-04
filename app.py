@@ -48,7 +48,10 @@ def home():
 
     if request.method == "POST":
         selected_movie = request.form.get("movie")
-        recommendations = recommend(selected_movie)
+        try:
+            recommendations = recommend(selected_movie)
+        except Exception as e:
+            return str(e)
 
     return render_template("index.html",
                            movies=movies['title'].values,
