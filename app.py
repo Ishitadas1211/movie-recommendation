@@ -10,8 +10,7 @@ app = Flask(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(BASE_DIR, "movies.csv")
-
-movies = pd.read_csv(file_path)
+movies = pd.read_csv(file_path, encoding='latin-1')
 
 # Preprocessing
 movies['overview'] = movies['overview'].fillna('')
