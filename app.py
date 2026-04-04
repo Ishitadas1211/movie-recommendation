@@ -43,15 +43,18 @@ def recommend(movie):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    recommendations = []
+    try:
+        recommendations = []
 
-    if request.method == "POST":
-        selected_movie = request.form.get("movie")
-        recommendations = recommend(selected_movie)
+        if request.method == "POST":
+            selected_movie = request.form.get("movie")
+            recommendations = recommend(selected_movie)
 
-    return render_template("index.html",
-                           movies=movies['title'].values,
-                           recommendations=recommendations)
+        return render_template("index.html",
+                               movies=movies['title'].values,
+                               recommendations=recommendations)
+    except Exception as e:
+        return str(e)
 
 if __name__ == "__main__":
     app.run(debug=True)
