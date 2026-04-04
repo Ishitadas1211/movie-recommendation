@@ -27,16 +27,13 @@ similarity = cosine_similarity(vectors)
 
 # Recommendation function
 def recommend(movie):
-    movie = movie.lower()
-    index = movies[movies['title'].str.lower() == movie].index[0]
-    distances = similarity[index]
-
-    movie_list = sorted(list(enumerate(distances)),
-                        reverse=True,
-                        key=lambda x: x[1])[1:6]
+    movie_index = movies[movies['title'] == movie].index[0]
+    distances = similarity[movie_index]
+    movies_list = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:6]
 
     recommended_movies = []
-    for i in movie_list:
+
+    for i in movies_list:
         recommended_movies.append(movies.iloc[i[0]].title)
 
     return recommended_movies
