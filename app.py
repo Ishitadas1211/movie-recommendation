@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import os
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -6,7 +7,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 app = Flask(__name__)
 
 # Load dataset
-movies = pd.read_csv("movies.csv")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(BASE_DIR, "movies.csv")
+
+movies = pd.read_csv(file_path)
 
 # Preprocessing
 movies['overview'] = movies['overview'].fillna('')
